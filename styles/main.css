@@ -639,3 +639,59 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 700px) {
     .experience-item { grid-template-columns: 1fr; gap: 0.5rem; }
 }
+
+/* ---------- Contact CTA ---------- */
+.contact {
+    padding: 12rem 0;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    text-align: center;
+}
+.contact-inner { max-width: 900px; margin: 0 auto; padding: 0 var(--gutter); }
+.contact-title {
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 700;
+    letter-spacing: -3px;
+    line-height: 0.95;
+    margin-bottom: 2rem;
+}
+.contact-title em { font-family: var(--font-serif); font-style: italic; font-weight: 300; color: var(--accent); }
+.contact-text {
+    font-size: clamp(16px, 1.4vw, 20px);
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+}
+.contact-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+.contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    border: 1px solid var(--border-strong);
+    border-radius: 50px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    color: var(--text);
+    transition: all 0.3s var(--ease-out);
+    background: rgba(245, 240, 232, 0.02);
+}
+.contact-btn:hover {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+.contact-btn.primary {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+}
+.contact-btn.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
