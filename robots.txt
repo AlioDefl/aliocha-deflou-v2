@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aliodefl.github.io/aliocha-deflou-v2/sitemap.xml

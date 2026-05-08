@@ -832,3 +832,17 @@ a { color: inherit; text-decoration: none; }
     margin-top: 3rem;
     flex-wrap: wrap;
 }
+
+/* ---------- Focus visibility (a11y) ---------- */
+*:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+/* ---------- Reduced motion: disable looping animations ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+    .status-pill .pulse { animation: none; }
+    .hero-scroll::after { animation: none; }
+}
