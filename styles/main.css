@@ -299,3 +299,113 @@ a { color: inherit; text-decoration: none; }
     .about-portrait { width: 100%; max-width: 320px; }
     .about-stats { flex-direction: column; gap: 1.5rem; }
 }
+
+/* ---------- Projects section ---------- */
+.projects {
+    padding: 8rem 0;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+}
+.projects-header {
+    max-width: var(--max-width);
+    margin: 0 auto 5rem;
+    padding: 0 var(--gutter);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 2rem;
+}
+.projects-header h2 { font-size: clamp(2rem, 5vw, 4rem); font-weight: 600; letter-spacing: -1.5px; line-height: 1; }
+.projects-header h2 em { font-family: var(--font-serif); font-style: italic; font-weight: 300; color: var(--accent); }
+.projects-count { font-family: var(--font-mono); font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); white-space: nowrap; }
+
+/* Featured cards */
+.featured-list {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    display: flex;
+    flex-direction: column;
+    gap: 8rem;
+}
+.featured-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+.featured-card.reverse { direction: rtl; }
+.featured-card.reverse > * { direction: ltr; }
+.featured-image {
+    aspect-ratio: 4 / 3;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-strong);
+    position: relative;
+}
+.featured-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease-out); }
+.featured-card:hover .featured-image img { transform: scale(1.04); }
+.featured-text { display: flex; flex-direction: column; gap: 1.5rem; }
+.featured-meta { display: flex; align-items: center; gap: 1rem; font-family: var(--font-mono); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); }
+.featured-meta .num { color: var(--accent); }
+.featured-meta .dot { width: 4px; height: 4px; background: var(--text-faint); border-radius: 50%; }
+.featured-title { font-size: clamp(28px, 4vw, 48px); font-weight: 600; letter-spacing: -1px; line-height: 1.05; }
+.featured-tagline { font-size: 18px; font-weight: 300; line-height: 1.5; color: var(--text-muted); }
+.featured-stack { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    padding: 0.4rem 0.85rem;
+    border: 1px solid var(--border-strong);
+    border-radius: 50px;
+    color: var(--text-muted);
+}
+.featured-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    color: var(--accent);
+    text-transform: uppercase;
+    transition: gap 0.3s var(--ease-out);
+    width: fit-content;
+}
+.featured-cta::after { content: '→'; transition: transform 0.3s var(--ease-out); }
+.featured-cta:hover { gap: 1rem; }
+.featured-cta:hover::after { transform: translateX(4px); }
+
+@media (max-width: 900px) {
+    .featured-card, .featured-card.reverse { grid-template-columns: 1fr; gap: 2rem; direction: ltr; }
+}
+
+/* ---------- Trading Bot CSS mockup ---------- */
+.tb-mockup {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #1f1f1f 0%, #161616 100%);
+    padding: 1.5rem;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 1rem;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+}
+.tb-header { display: flex; justify-content: space-between; align-items: center; }
+.tb-pair { font-size: 13px; color: var(--text); font-weight: 500; }
+.tb-pair .accent { color: var(--accent); }
+.tb-controls { display: flex; gap: 0.5rem; }
+.tb-controls span { padding: 0.25rem 0.6rem; background: var(--bg-elevated); border-radius: 4px; }
+.tb-controls span.active { background: var(--accent); color: var(--bg); }
+.tb-chart { position: relative; background: rgba(245, 240, 232, 0.02); border-radius: 6px; overflow: hidden; }
+.tb-chart svg { width: 100%; height: 100%; }
+.tb-footer { display: flex; justify-content: space-between; }
+.tb-footer .stat .num { color: var(--text); font-size: 12px; font-weight: 500; }
+.tb-footer .stat .num.up { color: #7ad6a4; }
+.tb-footer .stat .num.down { color: #d67a7a; }
+.tb-footer .stat .lab { font-size: 9px; letter-spacing: 1px; text-transform: uppercase; }
