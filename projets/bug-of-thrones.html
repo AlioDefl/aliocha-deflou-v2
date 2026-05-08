@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bug of Thrones — Étude de cas | Aliocha Deflou</title>
+    <meta name="description" content="Shoot'em up multijoueur temps réel TypeScript/Socket.IO. Serveur autoritaire 60 FPS, leaderboard SQLite, 30 tests automatisés. Projet d'équipe SAÉ BUT2.">
+    <meta name="theme-color" content="#1a1a1a">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+    <a href="#main" class="skip-link">Aller au contenu principal</a>
+    <nav class="pd-nav" role="navigation">
+        <a href="../index.html#projets" class="pd-nav-back">← Tous les projets</a>
+        <a href="../index.html" class="nav-logo">Aliocha Deflou</a>
+    </nav>
+
+    <main id="main">
+        <article>
+            <header class="pd-hero">
+                <div class="pd-meta">
+                    <span class="accent">2025</span>
+                    <span>·</span>
+                    <span>Multijoueur Temps Réel · Projet d'équipe</span>
+                </div>
+                <h1 class="pd-title">Bug of Thrones.</h1>
+                <p class="pd-tagline">Shoot'em up multijoueur temps réel à 2 joueurs. Architecture client/serveur strictement séparée avec serveur autoritaire à 60 FPS via Socket.IO, leaderboard SQLite et 30 tests automatisés.</p>
+                <div class="pd-image">
+                    <img src="../assets/img/bug-of-thrones-gameplay.webp" alt="Capture d'écran du gameplay de Bug of Thrones" loading="eager">
+                </div>
+            </header>
+
+            <section class="pd-section">
+                <h2>Le <em>contexte</em>.</h2>
+                <p>SAÉ BUT2 Informatique, IUT de Lille, équipe de 3 (Aubin Cambier, Aliocha Deflou, Sewan Hamida). L'objectif : produire un jeu multijoueur temps réel complet en TypeScript, avec une vraie séparation client/serveur, un leaderboard persistant et une suite de tests automatisés.</p>
+                <p>Contrainte forte : le serveur doit être <strong>autoritaire</strong> (toute la logique de jeu côté serveur, le client n'est qu'un rendu) pour empêcher la triche et simplifier la synchronisation à 2 joueurs.</p>
+            </section>
+
+            <section class="pd-section">
+                <h2>La <em>stack</em>.</h2>
+                <div class="pd-stack-grid">
+                    <div class="pd-stack-item"><span class="lab">Langage</span>TypeScript</div>
+                    <div class="pd-stack-item"><span class="lab">Réseau</span>Socket.IO</div>
+                    <div class="pd-stack-item"><span class="lab">Backend</span>Node.js</div>
+                    <div class="pd-stack-item"><span class="lab">Rendu</span>Canvas API</div>
+                    <div class="pd-stack-item"><span class="lab">Persistance</span>SQLite</div>
+                    <div class="pd-stack-item"><span class="lab">Build</span>Vite</div>
+                    <div class="pd-stack-item"><span class="lab">Conteneur</span>Docker / Podman</div>
+                </div>
+            </section>
+
+            <section class="pd-section">
+                <h2>L'<em>architecture</em>.</h2>
+                <p>Trois modules strictement séparés : <strong>client</strong> (TypeScript + Canvas, envoie des inputs et affiche l'état reçu), <strong>server</strong> (Node.js + Socket.IO, exécute le tick autoritaire à 60 FPS), <strong>shared</strong> (types et constantes partagés).</p>
+                <p>Le client envoie ses inputs via WebSocket dans un setInterval. Le serveur stocke le dernier input par joueur, puis l'applique dans son tick à 60 FPS, et broadcaste l'état complet à tous les joueurs de la room.</p>
+                <p>Le leaderboard est sauvegardé en SQLite à la mort du joueur ou à sa déconnexion. Consultable via un socket dédié depuis le menu.</p>
+            </section>
+
+            <section class="pd-section">
+                <h2>Les <em>défis</em>.</h2>
+                <ul>
+                    <li>Synchronisation client/serveur à 60 FPS sans interpolation côté client. Solution : server tick autoritaire avec input lag accepté, qualité testée en conditions réseau dégradées.</li>
+                    <li>Gestion propre de la déconnexion d'un partenaire en cours de partie. Solution : event explicite côté serveur, retour propre au lobby pour le client restant.</li>
+                    <li>Architecture `shared/` introduite trop tard, types dupliqués pendant le développement. Leçon : définir les contrats d'interface en premier, dès le sprint 1.</li>
+                </ul>
+            </section>
+
+            <section class="pd-section">
+                <h2>Les <em>apprentissages</em>.</h2>
+                <p>Programmation réseau temps réel (WebSocket, Socket.IO), simulation autoritaire à tick fixe, écriture de 30 tests automatisés (collisions, mouvement, logique serveur, intégration socket), conteneurisation avec Docker et Podman, et l'importance de l'architecture dès le sprint 1 plutôt qu'en cours de route.</p>
+            </section>
+
+            <section class="pd-section">
+                <h2>Liens.</h2>
+                <div class="pd-cta">
+                    <a href="https://github.com/AlioDefl/bug-of-thrones" target="_blank" rel="noopener" class="contact-btn primary">Code GitHub →</a>
+                    <a href="../index.html#contact" class="contact-btn">Me contacter</a>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="footer-inner">
+            <span>© 2026 Aliocha Deflou</span>
+            <div class="footer-links">
+                <a href="../index.html">Accueil</a>
+                <a href="../index.html#contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../scripts/main.js"></script>
+</body>
+</html>

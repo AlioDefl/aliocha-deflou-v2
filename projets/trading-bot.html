@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Bot Crypto — Étude de cas | Aliocha Deflou</title>
+    <meta name="description" content="Webapp de paper trading crypto algorithmique en React + FastAPI. Backtest, simulation live WebSocket, ADRs documentés.">
+    <meta name="theme-color" content="#1a1a1a">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+    <a href="#main" class="skip-link">Aller au contenu principal</a>
+    <nav class="pd-nav" role="navigation">
+        <a href="../index.html#projets" class="pd-nav-back">← Tous les projets</a>
+        <a href="../index.html" class="nav-logo">Aliocha Deflou</a>
+    </nav>
+
+    <main id="main">
+        <article>
+            <header class="pd-hero">
+                <div class="pd-meta">
+                    <span class="accent">2026 — En cours</span>
+                    <span>·</span>
+                    <span>Webapp Fullstack</span>
+                </div>
+                <h1 class="pd-title">Trading Bot Crypto.</h1>
+                <p class="pd-tagline">Webapp de paper trading crypto algorithmique : choix d'une paire, paramétrage de stratégies (SMA, RSI, Bollinger), backtest sur historique et simulation live via WebSocket. Projet de fin de BUT2 documenté en ADR.</p>
+
+                <div class="pd-image" style="aspect-ratio: 16/9; padding: 2rem;">
+                    <div class="tb-mockup">
+                        <div class="tb-header">
+                            <span class="tb-pair">BTC/<span class="accent">USDT</span></span>
+                            <div class="tb-controls">
+                                <span>1H</span><span class="active">4H</span><span>1D</span>
+                            </div>
+                        </div>
+                        <div class="tb-chart">
+                            <svg viewBox="0 0 400 160" preserveAspectRatio="none" style="height: 100%;">
+                                <polyline fill="none" stroke="#d4a574" stroke-width="1.5" points="0,120 30,100 60,110 90,80 120,90 150,60 180,75 210,45 240,55 270,30 300,50 330,25 360,40 400,15"/>
+                                <polyline fill="none" stroke="rgba(212,165,116,0.2)" stroke-width="1" points="0,140 30,135 60,138 90,125 120,130 150,115 180,120 210,108 240,112 270,98 300,105 330,92 360,100 400,88"/>
+                            </svg>
+                        </div>
+                        <div class="tb-footer">
+                            <div class="stat"><div class="num up">+12.4%</div><div class="lab">Backtest 30d</div></div>
+                            <div class="stat"><div class="num">SMA 20/50</div><div class="lab">Stratégie</div></div>
+                            <div class="stat"><div class="num up">63%</div><div class="lab">Win rate</div></div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <section class="pd-section">
+                <h2>Le <em>contexte</em>.</h2>
+                <p>Projet de fin d'année BUT2 Informatique (parcours Réalisation d'Applications, IUT de Lille). L'objectif : démontrer une maîtrise fullstack complète sur un domaine métier non-trivial — le trading algorithmique — sans jamais manipuler d'argent réel (paper trading uniquement).</p>
+                <p>Le projet doit montrer la capacité à : intégrer une API externe (ccxt pour les données de marché), concevoir une persistance fiable (PostgreSQL avec migrations), implémenter de la communication temps réel (WebSocket), et documenter ses choix d'architecture (ADRs).</p>
+            </section>
+
+            <section class="pd-section">
+                <h2>La <em>stack</em>.</h2>
+                <div class="pd-stack-grid">
+                    <div class="pd-stack-item"><span class="lab">Frontend</span>React 18 + TypeScript</div>
+                    <div class="pd-stack-item"><span class="lab">Styling</span>Tailwind CSS + Recharts</div>
+                    <div class="pd-stack-item"><span class="lab">Backend</span>Python 3.11 + FastAPI</div>
+                    <div class="pd-stack-item"><span class="lab">Trading</span>ccxt + pandas + numpy</div>
+                    <div class="pd-stack-item"><span class="lab">BDD</span>PostgreSQL + SQLAlchemy + Alembic</div>
+                    <div class="pd-stack-item"><span class="lab">Infra</span>Docker Compose</div>
+                </div>
+                <p>Stack figée par <strong>ADR-001</strong> avant le moindre commit de code. Architecture détaillée dans <strong>ADR-002</strong>.</p>
+            </section>
+
+            <section class="pd-section">
+                <h2>L'<em>architecture</em>.</h2>
+                <p>Backend FastAPI exposant une API REST + un endpoint WebSocket. Le frontend React consomme l'API pour les écrans de configuration (paire, stratégie, paramètres) et s'abonne au WebSocket pour la simulation live. Persistance PostgreSQL pour les configurations et l'historique des backtests.</p>
+                <p>Les stratégies (SMA, RSI, Bollinger) sont implémentées en pandas/numpy côté backend, ce qui permet de réutiliser le même code pour le backtest historique et la simulation live.</p>
+            </section>
+
+            <section class="pd-section">
+                <h2>Les <em>défis</em>.</h2>
+                <ul>
+                    <li>Concevoir un moteur de backtest qui produit les mêmes résultats que la simulation live (cohérence). Solution : code de calcul d'indicateurs unifié, alimenté par un flux de bougies (historique ou temps réel).</li>
+                    <li>Gérer les rate limits de l'API ccxt sans bloquer l'UI. Solution : worker async côté backend, le frontend ne fait que lire la dernière donnée disponible.</li>
+                    <li>Documenter les choix techniques pour qu'ils restent compréhensibles dans 6 mois. Solution : ADRs systématiques pour chaque décision structurelle.</li>
+                </ul>
+            </section>
+
+            <section class="pd-section">
+                <h2>Les <em>apprentissages</em>.</h2>
+                <p>Architecture asynchrone Python (async/await), ORM avec migrations versionnées (Alembic), conteneurisation multi-services (Docker Compose), documentation par décisions architecturales (ADR), et la valeur de figer la stack avant de commencer à coder.</p>
+            </section>
+
+            <section class="pd-section">
+                <h2>Liens.</h2>
+                <div class="pd-cta">
+                    <a href="https://github.com/AlioDefl/Trading-bot" target="_blank" rel="noopener" class="contact-btn primary">Code GitHub →</a>
+                    <a href="../index.html#contact" class="contact-btn">Me contacter</a>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="footer-inner">
+            <span>© 2026 Aliocha Deflou</span>
+            <div class="footer-links">
+                <a href="../index.html">Accueil</a>
+                <a href="../index.html#contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../scripts/main.js"></script>
+</body>
+</html>
