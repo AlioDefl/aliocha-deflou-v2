@@ -54,10 +54,10 @@
         </section>
         <section class="about" id="about" aria-label="À propos">
             <div class="about-inner">
-                <div class="about-portrait">
+                <div class="about-portrait" data-reveal>
                     <img src="assets/img/portrait.webp" alt="Portrait d'Aliocha Deflou" loading="lazy" width="320" height="320">
                 </div>
-                <div class="about-text">
+                <div class="about-text" data-reveal data-reveal-delay="100">
                     <span class="about-label">À propos</span>
                     <p class="about-bio">
                         Étudiant en <em>BUT Informatique</em> à l'IUT de Lille, j'aime construire des choses qui marchent — du backend Python rigoureux jusqu'aux interfaces React polies. <em>Curieux</em>, <em>autonome</em> et <em>livreur</em>.
@@ -87,7 +87,7 @@
 
             <div class="featured-list">
                 <!-- Featured 1: Trading Bot -->
-                <article class="featured-card">
+                <article class="featured-card" data-reveal>
                     <a href="projets/trading-bot.html" class="featured-image" aria-label="Voir l'étude de cas Trading Bot">
                         <div class="tb-mockup">
                             <div class="tb-header">
@@ -125,7 +125,7 @@
                 </article>
 
                 <!-- Featured 2: Bug of Thrones -->
-                <article class="featured-card reverse">
+                <article class="featured-card reverse" data-reveal>
                     <a href="projets/bug-of-thrones.html" class="featured-image" aria-label="Voir l'étude de cas Bug of Thrones">
                         <img src="assets/img/bug-of-thrones-gameplay.webp" alt="Capture du jeu Bug of Thrones" loading="lazy">
                     </a>
@@ -145,7 +145,7 @@
                 </article>
 
                 <!-- Featured 3: Cabinet de Réflexologie -->
-                <article class="featured-card">
+                <article class="featured-card" data-reveal>
                     <a href="projets/cabinet-reflexologie.html" class="featured-image" aria-label="Voir l'étude de cas Cabinet de Réflexologie">
                         <img src="assets/img/reflexologie-hero.webp" alt="Site du Cabinet de Réflexologie de l'Audomarois" loading="lazy">
                     </a>
@@ -169,7 +169,7 @@
                 <span class="projects-grid-label">Autres projets</span>
                 <div class="projects-grid">
 
-                    <article class="project-mini">
+                    <article class="project-mini" data-reveal>
                         <div class="project-mini-meta"><span>2025</span><span>Projet d'équipe</span></div>
                         <h3 class="project-mini-title">Labyrinthe SAÉ 3.3</h3>
                         <p class="project-mini-tagline">Application JavaFX de génération et résolution de labyrinthes en équipe de 5 sur GitLab. Mode libre, mode progression, boutique d'articles, thèmes visuels.</p>
@@ -177,7 +177,7 @@
                         <a href="https://github.com/AlioDefl/labyrinthe-sae-3-3" target="_blank" rel="noopener" class="project-mini-link">Code GitHub →</a>
                     </article>
 
-                    <article class="project-mini">
+                    <article class="project-mini" data-reveal>
                         <div class="project-mini-meta"><span>2025</span><span>Backend / API</span></div>
                         <h3 class="project-mini-title">API REST EcoDrop</h3>
                         <p class="project-mini-tagline">API REST complète pour la collecte de déchets (batteries, textiles, électronique). 4 ressources, pattern DAO/DTO, vues SQL pour leaderboard, négociation JSON/XML.</p>
@@ -185,7 +185,7 @@
                         <span class="project-mini-link muted">Code disponible sur demande</span>
                     </article>
 
-                    <article class="project-mini">
+                    <article class="project-mini" data-reveal>
                         <div class="project-mini-meta"><span>2025</span><span>Web</span></div>
                         <h3 class="project-mini-title">Portfolio Architecte</h3>
                         <p class="project-mini-tagline">Site web portfolio moderne et responsive pour un architecte. Animations fluides, galerie de projets interactive, optimisation des images haute résolution.</p>
@@ -193,7 +193,7 @@
                         <span class="project-mini-link muted">Code privé</span>
                     </article>
 
-                    <article class="project-mini">
+                    <article class="project-mini" data-reveal>
                         <div class="project-mini-meta"><span>2025</span><span>Jeu</span></div>
                         <h3 class="project-mini-title">Jeu Risk</h3>
                         <p class="project-mini-tagline">Implémentation Java du jeu de stratégie Risk en terminal. Mode solo contre IA et multijoueur local, architecture orientée objet avec design patterns.</p>
@@ -201,7 +201,7 @@
                         <span class="project-mini-link muted">Code privé</span>
                     </article>
 
-                    <article class="project-mini">
+                    <article class="project-mini" data-reveal>
                         <div class="project-mini-meta"><span>2025</span><span>Application desktop</span></div>
                         <h3 class="project-mini-title">Séjours Linguistiques</h3>
                         <p class="project-mini-tagline">Application Java Swing de gestion de séjours linguistiques avec base de données locale. Gestion des participants, destinations et génération de documents.</p>
@@ -209,7 +209,7 @@
                         <span class="project-mini-link muted">Code privé</span>
                     </article>
 
-                    <article class="project-mini">
+                    <article class="project-mini" data-reveal>
                         <div class="project-mini-meta"><span>2023</span><span>Intégration web</span></div>
                         <h3 class="project-mini-title">Site OpenAI</h3>
                         <p class="project-mini-tagline">Reproduction fidèle pixel-perfect du site officiel d'OpenAI en HTML/CSS pur. Exercice d'intégration avec responsive design et animations CSS complexes.</p>
@@ -217,7 +217,7 @@
                         <span class="project-mini-link muted">Code privé</span>
                     </article>
 
-                    <article class="project-mini">
+                    <article class="project-mini" data-reveal>
                         <div class="project-mini-meta"><span>2023</span><span>Jeu</span></div>
                         <h3 class="project-mini-title">Mauscape</h3>
                         <p class="project-mini-tagline">Jeu d'aventure textuel jouable dans le terminal. Création d'un moteur de jeu avec gestion de scénarios à embranchements et plusieurs fins possibles.</p>
@@ -248,28 +248,28 @@
             <div class="stack-inner">
                 <h2 class="section-title">Ce que je <em class="serif-italic">fais</em>.</h2>
                 <div class="stack-grid">
-                    <div class="stack-col">
+                    <div class="stack-col" data-reveal data-reveal-delay="0">
                         <span class="stack-num">01.</span>
                         <h3 class="stack-cat">Frontend</h3>
                         <ul class="stack-list">
                             <li>React</li><li>TypeScript</li><li>HTML5 / CSS3</li><li>Tailwind</li><li>Vite</li>
                         </ul>
                     </div>
-                    <div class="stack-col">
+                    <div class="stack-col" data-reveal data-reveal-delay="100">
                         <span class="stack-num">02.</span>
                         <h3 class="stack-cat">Backend</h3>
                         <ul class="stack-list">
                             <li>Python</li><li>FastAPI</li><li>Java</li><li>Servlets</li><li>Node.js</li><li>Socket.IO</li>
                         </ul>
                     </div>
-                    <div class="stack-col">
+                    <div class="stack-col" data-reveal data-reveal-delay="200">
                         <span class="stack-num">03.</span>
                         <h3 class="stack-cat">Data</h3>
                         <ul class="stack-list">
                             <li>PostgreSQL</li><li>SQLite</li><li>SQL</li><li>Jackson</li><li>Schema.org</li>
                         </ul>
                     </div>
-                    <div class="stack-col">
+                    <div class="stack-col" data-reveal data-reveal-delay="300">
                         <span class="stack-num">04.</span>
                         <h3 class="stack-cat">Tooling</h3>
                         <ul class="stack-list">
@@ -283,17 +283,17 @@
             <div class="why-inner">
                 <h2 class="section-title">Pourquoi me <em class="serif-italic">recruter</em>.</h2>
                 <div class="why-grid">
-                    <div class="why-item">
+                    <div class="why-item" data-reveal data-reveal-delay="0">
                         <span class="why-num">01</span>
                         <h3 class="why-title">Polyvalence prouvée</h3>
                         <p class="why-text">Web, jeux, backend, client réel — 10 projets livrés en 3 langages principaux (TypeScript, Python, Java). Je sais m'adapter à la stack qui sert le problème, pas l'inverse.</p>
                     </div>
-                    <div class="why-item">
+                    <div class="why-item" data-reveal data-reveal-delay="100">
                         <span class="why-num">02</span>
                         <h3 class="why-title">Rodé au travail d'équipe</h3>
                         <p class="why-text">5 développeurs sur Labyrinthe SAÉ 3.3, 3 sur Bug of Thrones. Gestion Git/GitLab avec rebase, résolution de merge conflicts, code reviews entre pairs.</p>
                     </div>
-                    <div class="why-item">
+                    <div class="why-item" data-reveal data-reveal-delay="200">
                         <span class="why-num">03</span>
                         <h3 class="why-title">Documentation et rigueur</h3>
                         <p class="why-text">ADRs sur Trading Bot, Javadoc complète sur Labyrinthe, READMEs détaillés, architecture serveur autoritaire sur Bug of Thrones avec 30 tests automatisés.</p>
@@ -306,7 +306,7 @@
                 <h2 class="section-title">Formations.</h2>
                 <div class="timeline">
 
-                    <article class="timeline-item">
+                    <article class="timeline-item" data-reveal>
                         <div class="timeline-date">2024 — 2027</div>
                         <div class="timeline-content">
                             <h3>BUT Informatique — Parcours Réalisation d'Applications</h3>
@@ -315,7 +315,7 @@
                         </div>
                     </article>
 
-                    <article class="timeline-item">
+                    <article class="timeline-item" data-reveal>
                         <div class="timeline-date">2023 — 2024</div>
                         <div class="timeline-content">
                             <h3>Prépa Ingénieur — Cycle Informatique &amp; Réseaux</h3>
@@ -324,7 +324,7 @@
                         </div>
                     </article>
 
-                    <article class="timeline-item">
+                    <article class="timeline-item" data-reveal>
                         <div class="timeline-date">2020 — 2023</div>
                         <div class="timeline-content">
                             <h3>Baccalauréat Général — Spécialités Maths &amp; NSI</h3>
@@ -333,7 +333,7 @@
                         </div>
                     </article>
 
-                    <article class="timeline-item">
+                    <article class="timeline-item" data-reveal>
                         <div class="timeline-date">Certifications</div>
                         <div class="timeline-content">
                             <h3>Certifications complémentaires</h3>
@@ -391,9 +391,9 @@
         </section>
         <section class="contact" id="contact" aria-label="Contact">
             <div class="contact-inner">
-                <h2 class="contact-title">On en <em>discute</em> ?</h2>
+                <h2 class="contact-title" data-reveal>On en <em>discute</em> ?</h2>
                 <p class="contact-text">Je suis disponible pour une alternance dès septembre 2026 à Lille (BUT3 + Master si proposé). Réponse garantie sous 24h sur l'un des canaux ci-dessous.</p>
-                <div class="contact-buttons">
+                <div class="contact-buttons" data-reveal data-reveal-delay="200">
                     <a href="mailto:aliocha.deflou@gmail.com" class="contact-btn primary">Email →</a>
                     <a href="https://www.linkedin.com/in/aliocha-deflou/" target="_blank" rel="noopener" class="contact-btn">LinkedIn ↗</a>
                     <a href="https://github.com/AlioDefl" target="_blank" rel="noopener" class="contact-btn">GitHub ↗</a>
