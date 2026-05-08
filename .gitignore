@@ -1,0 +1,13 @@
+# Brainstorming session files (visual companion)
+.superpowers/
+
+# Source assets (raw screenshots, before optimization)
+assets/source/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
