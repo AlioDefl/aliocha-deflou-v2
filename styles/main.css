@@ -695,3 +695,27 @@ a { color: inherit; text-decoration: none; }
     border-color: var(--accent);
 }
 .contact-btn.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+
+/* ---------- Footer ---------- */
+.footer {
+    padding: 3rem 0 2rem;
+    background: var(--bg-deep);
+    border-top: 1px solid var(--border);
+}
+.footer-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    color: var(--text-faint);
+}
+.footer-links { display: flex; gap: 2rem; flex-wrap: wrap; }
+.footer-links a { color: var(--text-muted); transition: color 0.3s var(--ease-out); }
+.footer-links a:hover { color: var(--accent); }
