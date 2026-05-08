@@ -1,1 +1,103 @@
 /* main.css — feuille principale du portfolio Aliocha Deflou v2 */
+
+/* ---------- 1. CSS Variables ---------- */
+:root {
+    /* Palette */
+    --bg: #1a1a1a;
+    --bg-elevated: #232323;
+    --bg-deep: #0f0f0f;
+    --text: #f5f0e8;
+    --text-muted: #8a8275;
+    --text-faint: #5a5447;
+    --accent: #d4a574;
+    --accent-hover: #e0b889;
+    --border: #2a2a2a;
+    --border-strong: #3a3a3a;
+
+    /* Typography */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-serif: 'Fraunces', Georgia, serif;
+    --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+    /* Easing */
+    --ease-out: cubic-bezier(.4, 0, .2, 1);
+    --ease-pop: cubic-bezier(.34, 1.56, .64, 1);
+
+    /* Layout */
+    --max-width: 1280px;
+    --gutter: 2rem;
+}
+
+/* ---------- 2. Reset ---------- */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 400;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+}
+img, svg, video { display: block; max-width: 100%; height: auto; }
+button { font: inherit; border: none; background: none; cursor: pointer; color: inherit; }
+a { color: inherit; text-decoration: none; }
+
+/* ---------- 3. Typography utilities ---------- */
+.label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-faint);
+}
+.serif-italic {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+}
+
+/* ---------- 4. Layout utilities ---------- */
+.container {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+}
+.section {
+    padding: 8rem 0;
+}
+.section-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 600;
+    letter-spacing: -1.5px;
+    line-height: 1.05;
+    margin-bottom: 3rem;
+}
+
+/* ---------- 5. Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ---------- 6. Skip link ---------- */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: var(--accent);
+    color: var(--bg);
+    padding: 1rem 2rem;
+    z-index: 10000;
+    font-weight: 500;
+    transition: top 0.3s var(--ease-out);
+}
+.skip-link:focus { top: 0; }
