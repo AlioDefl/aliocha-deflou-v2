@@ -558,3 +558,52 @@ a { color: inherit; text-decoration: none; }
 .why-text { font-size: 15px; line-height: 1.6; color: var(--text-muted); }
 
 @media (max-width: 900px) { .why-grid { grid-template-columns: 1fr; gap: 3rem; } }
+
+/* ---------- Education timeline ---------- */
+.education {
+    padding: 8rem 0;
+    background: var(--bg);
+}
+.education-inner { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--gutter); }
+.timeline {
+    position: relative;
+    margin-top: 4rem;
+    padding-left: 2rem;
+}
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--border-strong);
+}
+.timeline-item {
+    position: relative;
+    padding-bottom: 3rem;
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 2rem;
+}
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.4rem;
+    top: 0.4rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 3px solid var(--bg);
+    box-shadow: 0 0 0 1px var(--accent);
+}
+.timeline-date { font-family: var(--font-mono); font-size: 12px; letter-spacing: 1px; color: var(--accent); padding-top: 0.3rem; }
+.timeline-content h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; }
+.timeline-content .school { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 0.75rem; }
+.timeline-content p { font-size: 14px; line-height: 1.6; color: var(--text-muted); }
+
+@media (max-width: 600px) {
+    .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
+}
