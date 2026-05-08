@@ -164,3 +164,93 @@ a { color: inherit; text-decoration: none; }
     .nav-links.open { display: flex; }
     .nav-hamburger { display: flex; }
 }
+
+/* ---------- Hero ---------- */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 8rem var(--gutter) 4rem;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    position: relative;
+}
+.hero-top, .hero-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-faint);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+.hero-bottom { padding-top: 2rem; border-top: 1px solid var(--border); }
+.hero-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    padding: 4rem 0;
+}
+.hero-name {
+    font-size: clamp(48px, 9vw, 120px);
+    font-weight: 700;
+    letter-spacing: -3px;
+    line-height: 0.92;
+}
+.hero-name .dot { color: var(--accent); }
+.hero-tagline {
+    font-size: clamp(18px, 2.4vw, 28px);
+    font-weight: 300;
+    line-height: 1.4;
+    color: var(--text);
+    max-width: 720px;
+}
+.hero-tagline em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+}
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.65rem 1.2rem;
+    border: 1px solid var(--border-strong);
+    border-radius: 50px;
+    background: rgba(245, 240, 232, 0.03);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text);
+    width: fit-content;
+}
+.status-pill .pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+}
+.hero-scroll {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.hero-scroll::after {
+    content: '↓';
+    animation: bounce 2s ease-in-out infinite;
+}
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(4px); }
+}
