@@ -239,4 +239,198 @@
         });
     }
 
+    // ---------- 6. Scroll progress bar (top of viewport) ----------
+    if (!reducedMotion) {
+        const progressBar = document.createElement('div');
+        progressBar.className = 'scroll-progress';
+        document.body.appendChild(progressBar);
+        rafScrollEffect(() => {
+            const max = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = max > 0 ? window.scrollY / max : 0;
+            progressBar.style.transform = `scaleX(${progress})`;
+        });
+    }
+
+    // ---------- 7. Section titles — masked word-by-word reveal ----------
+    const titleSelectors = '.section-title, .pd-title, .contact-title, .projects-header h2';
+    const splitWordsForMaskedReveal = (node) => {
+        const newChildren = [];
+        node.childNodes.forEach((child) => {
+            if (child.nodeType === Node.TEXT_NODE) {
+                const words = child.textContent.split(/(\s+)/);
+                words.forEach((w) => {
+                    if (w.trim()) {
+                        const mask = document.createElement('span');
+                        mask.className = 'word-mask';
+                        const inner = document.createElement('span');
+                        inner.className = 'word-inner';
+                        inner.textContent = w;
+                        mask.appendChild(inner);
+                        newChildren.push(mask);
+                    } else {
+                        newChildren.push(document.createTextNode(w));
+                    }
+                });
+            } else if (child.nodeType === Node.ELEMENT_NODE) {
+                if (child.tagName === 'BR') {
+                    newChildren.push(child);
+                } else {
+                    splitWordsForMaskedReveal(child);
+                    newChildren.push(child);
+                }
+            }
+        });
+        node.innerHTML = '';
+        newChildren.forEach((c) => node.appendChild(c));
+    };
+
+    document.querySelectorAll(titleSelectors).forEach((title) => {
+        if (title.dataset.titleSplit) return;
+        title.dataset.titleSplit = '1';
+        if (!reducedMotion) {
+            splitWordsForMaskedReveal(title);
+            const innerWords = title.querySelectorAll('.word-inner');
+            innerWords.forEach((w, i) => { w.style.transitionDelay = `${i * 80}ms`; });
+        }
+    });
+
+    if ('IntersectionObserver' in window && !reducedMotion) {
+        const titleObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('title-in');
+                    titleObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.25, rootMargin: '0px 0px -10% 0px' });
+        document.querySelectorAll(titleSelectors).forEach((t) => titleObserver.observe(t));
+    } else {
+        document.querySelectorAll(titleSelectors).forEach((t) => t.classList.add('title-in'));
+    }
+
+    // ---------- 8. Stat number counters ----------
+    if ('IntersectionObserver' in window && !reducedMotion) {
+        const statObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                const el = entry.target;
+                const text = el.textContent.trim();
+                const match = text.match(/^(\d+)(.*)$/);
+                if (!match) {
+                    statObserver.unobserve(el);
+                    return;
+                }
+                const target = parseInt(match[1], 10);
+                const suffix = match[2];
+                const duration = 1400;
+                const start = performance.now();
+                const tick = (now) => {
+                    const t = Math.min(1, (now - start) / duration);
+                    const eased = 1 - Math.pow(1 - t, 3);
+                    el.textContent = Math.round(target * eased) + suffix;
+                    if (t < 1) requestAnimationFrame(tick);
+                };
+                requestAnimationFrame(tick);
+                statObserver.unobserve(el);
+            });
+        }, { threshold: 0.5 });
+        document.querySelectorAll('.about-stat-num').forEach((el) => statObserver.observe(el));
+    }
+
+    // ---------- 9. Tag wave reveal on enter ----------
+    if ('IntersectionObserver' in window && !reducedMotion) {
+        const tagObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                const tags = entry.target.querySelectorAll('.tag');
+                tags.forEach((t, i) => { t.style.transitionDelay = `${i * 50}ms`; });
+                entry.target.classList.add('tags-in');
+                tagObserver.unobserve(entry.target);
+            });
+        }, { threshold: 0.3 });
+        document.querySelectorAll('.featured-stack, .project-mini-tags, .featured-meta').forEach((el) => tagObserver.observe(el));
+    }
+
+    // ---------- 10. Project mini cards — 3D mouse tilt ----------
+    if (isDesktop && !reducedMotion) {
+        document.querySelectorAll('.project-mini').forEach((card) => {
+            let isHover = false;
+            card.addEventListener('mouseenter', () => { isHover = true; card.classList.add('tilting'); });
+            card.addEventListener('mousemove', (e) => {
+                if (!isHover) return;
+                const rect = card.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width - 0.5;
+                const y = (e.clientY - rect.top) / rect.height - 0.5;
+                card.style.transform = `perspective(1000px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateZ(10px)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                isHover = false;
+                card.classList.remove('tilting');
+                card.style.transform = '';
+            });
+        });
+    }
+
+    // ---------- 11. Marquee — speed reactive to scroll velocity ----------
+    const marqueeTrack = document.querySelector('.marquee-track');
+    if (marqueeTrack && !reducedMotion) {
+        let scrollVel = 0;
+        let lastScroll = window.scrollY;
+        let lastTime = performance.now();
+        window.addEventListener('scroll', () => {
+            const now = performance.now();
+            const dt = Math.max(1, now - lastTime);
+            const dy = Math.abs(window.scrollY - lastScroll);
+            scrollVel = Math.min(scrollVel + dy / dt, 5);
+            lastTime = now;
+            lastScroll = window.scrollY;
+        }, { passive: true });
+        const updateMarquee = () => {
+            scrollVel *= 0.93;
+            const factor = 1 + Math.min(scrollVel * 2, 5);
+            marqueeTrack.style.animationDuration = `${60 / factor}s`;
+            requestAnimationFrame(updateMarquee);
+        };
+        updateMarquee();
+    }
+
+    // ---------- 12. Status pill — subtle parallax ----------
+    const statusPill = document.querySelector('.status-pill');
+    if (statusPill && !reducedMotion) {
+        rafScrollEffect(() => {
+            const y = window.scrollY * 0.15;
+            statusPill.style.transform = `translateY(${-y}px)`;
+        });
+    }
+
+    // ---------- 13. Featured card images — clip-path scroll reveal ----------
+    if ('IntersectionObserver' in window && !reducedMotion) {
+        const clipObs = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('clip-in');
+                    clipObs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+        document.querySelectorAll('.featured-image, .pd-image').forEach((el) => clipObs.observe(el));
+    }
+
+    // ---------- 14. Tilt on featured-card content (without breaking stack effect) ----------
+    if (isDesktop && !reducedMotion) {
+        document.querySelectorAll('.featured-card .featured-text').forEach((textBlock) => {
+            const card = textBlock.closest('.featured-card');
+            if (!card) return;
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width - 0.5;
+                const y = (e.clientY - rect.top) / rect.height - 0.5;
+                textBlock.style.transform = `perspective(800px) rotateY(${x * 4}deg) rotateX(${-y * 4}deg)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                textBlock.style.transform = '';
+            });
+        });
+    }
+
 })();

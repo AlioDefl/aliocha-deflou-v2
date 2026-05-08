@@ -939,3 +939,165 @@ a { color: inherit; text-decoration: none; }
         margin-bottom: 3rem;
     }
 }
+
+/* ========================================================== */
+/* ============ MAX SCROLL ANIMATION PACK =================== */
+/* ========================================================== */
+
+/* 6. Scroll progress bar */
+.scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent) 0%, #e8c896 100%);
+    z-index: 1000;
+    transform-origin: left center;
+    transform: scaleX(0);
+    pointer-events: none;
+    will-change: transform;
+}
+
+/* 7. Section title — masked word reveal */
+.section-title .word-mask, .pd-title .word-mask, .contact-title .word-mask, .projects-header h2 .word-mask {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    line-height: inherit;
+    padding-bottom: 0.05em;
+}
+.section-title .word-inner, .pd-title .word-inner, .contact-title .word-inner, .projects-header h2 .word-inner {
+    display: inline-block;
+    transform: translateY(110%);
+    transition: transform 0.95s cubic-bezier(.23, 1, .32, 1);
+    will-change: transform;
+}
+.section-title.title-in .word-inner,
+.pd-title.title-in .word-inner,
+.contact-title.title-in .word-inner,
+.projects-header h2.title-in .word-inner {
+    transform: translateY(0);
+}
+
+/* 9. Tag wave entrance */
+.featured-stack .tag, .project-mini-tags .tag, .featured-meta > * {
+    opacity: 0;
+    transform: translateY(15px) scale(0.9);
+    transition: opacity 0.5s var(--ease-out), transform 0.6s var(--ease-pop);
+    will-change: opacity, transform;
+}
+.featured-stack.tags-in .tag,
+.project-mini-tags.tags-in .tag,
+.featured-meta.tags-in > * {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* 10. Project mini — 3D tilt support */
+.project-mini {
+    transform-style: preserve-3d;
+    transition: transform 0.4s var(--ease-out), border-color 0.3s var(--ease-out);
+    will-change: transform;
+}
+.project-mini.tilting {
+    transition: transform 0.1s linear;
+    z-index: 10;
+}
+.project-mini:hover { border-color: var(--accent); }
+
+/* 13. Featured image — clip-path entrance reveal */
+.featured-image, .pd-image {
+    clip-path: inset(0 50% 0 50%);
+    transition: clip-path 1.2s cubic-bezier(.85, 0, .15, 1), transform 0.05s linear;
+}
+.featured-image.clip-in, .pd-image.clip-in {
+    clip-path: inset(0 0 0 0);
+}
+
+/* 14. Featured-text 3D tilt — smooth */
+.featured-text {
+    transform-style: preserve-3d;
+    transition: transform 0.4s var(--ease-out);
+    will-change: transform;
+}
+
+/* Upgrade existing data-reveal to subtle 3D */
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(45px) rotateX(-6deg);
+    transform-origin: center bottom;
+    transition: opacity 0.9s var(--ease-out), transform 1s var(--ease-out);
+    perspective: 1200px;
+    will-change: opacity, transform;
+}
+[data-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+}
+
+/* Cards get more dramatic 3D entrance */
+.featured-card[data-reveal] {
+    transform: translateY(70px) rotateX(-12deg) scale(0.95);
+    transform-origin: center bottom;
+}
+.featured-card[data-reveal].is-visible {
+    transform: translateY(0) rotateX(0) scale(1);
+}
+.project-mini[data-reveal] {
+    transform: translateY(50px) rotateX(-10deg) scale(0.94);
+    transform-origin: center bottom;
+}
+.project-mini[data-reveal].is-visible {
+    transform: translateY(0) rotateX(0) scale(1);
+}
+.timeline-item[data-reveal] {
+    transform: translateX(-30px) translateY(20px);
+}
+.timeline-item[data-reveal].is-visible {
+    transform: translateX(0) translateY(0);
+}
+
+/* Why-item — flip-in entrance */
+.why-item[data-reveal] {
+    transform: translateY(40px) rotateY(-15deg);
+    transform-origin: left center;
+}
+.why-item[data-reveal].is-visible {
+    transform: translateY(0) rotateY(0);
+}
+
+/* Stack-col — stagger flip */
+.stack-col[data-reveal] {
+    transform: translateY(40px) rotateX(-15deg);
+}
+.stack-col[data-reveal].is-visible {
+    transform: translateY(0) rotateX(0);
+}
+
+/* Reduced motion fallbacks */
+@media (prefers-reduced-motion: reduce) {
+    .scroll-progress { display: none; }
+    .word-inner { transform: none !important; }
+    .featured-stack .tag, .project-mini-tags .tag, .featured-meta > * {
+        opacity: 1; transform: none;
+    }
+    .featured-image, .pd-image { clip-path: none; }
+    .project-mini, .featured-text { transform: none !important; }
+    [data-reveal] { transform: none !important; opacity: 1 !important; }
+}
+
+/* Mobile — disable expensive 3D effects */
+@media (max-width: 700px) {
+    [data-reveal] {
+        transform: translateY(30px);
+    }
+    .featured-card[data-reveal],
+    .project-mini[data-reveal],
+    .why-item[data-reveal],
+    .stack-col[data-reveal] {
+        transform: translateY(30px);
+    }
+    .featured-image, .pd-image {
+        clip-path: none;
+    }
+}
