@@ -353,28 +353,7 @@
         });
     }
 
-    // ---------- 11. Marquee — speed reactive to scroll velocity ----------
-    const marqueeTrack = document.querySelector('.marquee-track');
-    if (marqueeTrack && !reducedMotion) {
-        let scrollVel = 0;
-        let lastScroll = window.scrollY;
-        let lastTime = performance.now();
-        window.addEventListener('scroll', () => {
-            const now = performance.now();
-            const dt = Math.max(1, now - lastTime);
-            const dy = Math.abs(window.scrollY - lastScroll);
-            scrollVel = Math.min(scrollVel + dy / dt, 5);
-            lastTime = now;
-            lastScroll = window.scrollY;
-        }, { passive: true });
-        const updateMarquee = () => {
-            scrollVel *= 0.93;
-            const factor = 1 + Math.min(scrollVel * 2, 5);
-            marqueeTrack.style.animationDuration = `${60 / factor}s`;
-            requestAnimationFrame(updateMarquee);
-        };
-        updateMarquee();
-    }
+    // ---------- 11. Marquee runs at constant CSS-defined speed (velocity reactive removed — caused jumps) ----------
 
     // ---------- 12. Status pill — subtle parallax ----------
     const statusPill = document.querySelector('.status-pill');
