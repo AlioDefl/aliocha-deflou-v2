@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API REST EcoDrop — Étude de cas | Aliocha Deflou</title>
+    <meta name="description" content="API REST Java pour la gestion de collecte de déchets. 4 ressources, pattern DAO/DTO, vues SQL, négociation JSON/XML. SAÉ S4.A02.1 IUT Lille.">
+    <meta name="theme-color" content="#1a1a1a">
+    <link rel="canonical" href="https://aliodefl.github.io/aliocha-deflou-v2/projets/api-rest-ecodrop.html">
+    <link rel="icon" type="image/png" href="../assets/icons/favicon.png">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="API REST EcoDrop — Étude de cas | Aliocha Deflou">
+    <meta property="og:description" content="API REST Java/Servlets/PostgreSQL pour la collecte de déchets. SAÉ BUT2 IUT Lille.">
+    <meta property="og:image" content="https://aliodefl.github.io/aliocha-deflou-v2/assets/icons/og-image.png">
+    <meta property="og:locale" content="fr_FR">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+    <a href="#main" class="skip-link">Aller au contenu principal</a>
+    <nav class="pd-nav" role="navigation">
+        <a href="../index.html#projets" class="pd-nav-back">← Tous les projets</a>
+        <a href="../index.html" class="nav-logo">Aliocha Deflou</a>
+    </nav>
+
+    <main id="main">
+        <article>
+            <header class="pd-hero">
+                <div class="pd-meta"><span class="accent">2025</span><span>·</span><span>API REST Backend Java</span></div>
+                <h1 class="pd-title">API REST<br>EcoDrop.</h1>
+                <p class="pd-tagline">API REST complète pour la gestion de collecte de déchets spécifiques (batteries, textiles, électronique). 4 ressources REST, pattern DAO/DTO, vues SQL pour leaderboard et taux de remplissage, négociation de contenu JSON/XML, programme d'import CSV en masse.</p>
+                <div class="pd-image pd-image-text">
+                    <div class="pd-image-text-inner">
+                        <span class="pd-image-num">05 · SAÉ S4.A02.1</span>
+                        <h2 class="pd-image-title">EcoDrop<br>REST API.</h2>
+                        <span class="pd-image-stack">Java · Servlets · PostgreSQL · Jackson · Bruno</span>
+                    </div>
+                </div>
+            </header>
+
+            <section class="pd-section">
+                <h2>Le <em>contexte</em>.</h2>
+                <p>SAÉ S4.A02.1 IUT de Lille, projet en binôme avec <strong>Sewan Hamida</strong>. Objectif : concevoir une API REST Java complète pour gérer la collecte de déchets dans une commune — utilisateurs, points de collecte, types de déchets acceptés, dépôts effectués, et leaderboard des recycleurs les plus actifs.</p>
+                <p>Contraintes fortes : validations métier strictes (poids positif, capacité non dépassée), négociation de contenu (JSON ou XML selon le header <code>Accept</code>), tests d'API exhaustifs.</p>
+            </section>
+
+            <section class="pd-section">
+                <h2>La <em>stack</em>.</h2>
+                <div class="pd-stack-grid">
+                    <div class="pd-stack-item"><span class="lab">Langage</span>Java</div>
+                    <div class="pd-stack-item"><span class="lab">Web</span>Servlets (annotations @WebServlet)</div>
+                    <div class="pd-stack-item"><span class="lab">BDD</span>PostgreSQL</div>
+                    <div class="pd-stack-item"><span class="lab">Sérialisation</span>Jackson (JSON + XML)</div>
+                    <div class="pd-stack-item"><span class="lab">Tests</span>Bruno (20+ scénarios)</div>
+                    <div class="pd-stack-item"><span class="lab">Import</span>CSV batch</div>
+                </div>
+            </section>
+
+            <section class="pd-section">
+                <h2>L'<em>architecture</em>.</h2>
+                <p>Pattern <strong>DAO/DTO</strong> avec singletons pour les DataSources, requêtes préparées (protection contre injection SQL). 6 DTOs (<code>WasteType</code>, <code>CollectionPoint</code>, <code>Deposit</code>, <code>User</code>, <code>UserScore</code>, <code>PointStatus</code>) et 5 DAOs. 4 servlets exposant chacune une ressource REST avec verbes HTTP standards.</p>
+                <p>Deux <strong>vues SQL</strong> calculent les agrégats côté base : <code>UserLeaderboard</code> (score total par utilisateur via <code>SUM(poids * pointsPerKilo)</code>) et <code>PointRemplissage</code> (taux de remplissage et flag <code>full</code>).</p>
+            </section>
+
+            <section class="pd-section">
+                <h2>Les <em>défis</em>.</h2>
+                <ul>
+                    <li>Implémenter la négociation de contenu via le header <code>Accept</code> (JSON par défaut, XML sur demande). Solution : utilitaire de sérialisation Jackson qui choisit le mapper selon le header reçu.</li>
+                    <li>Valider chaque création avec les bons codes HTTP (400 poids négatif, 403 point plein, 404 ressource introuvable, 409 login déjà pris). Solution : helper de validation centralisé.</li>
+                    <li>Importer des dépôts en masse depuis un CSV avec rapport détaillé. Solution : programme <code>ImportDeposits.java</code> qui parse, valide ligne par ligne, et produit un récap succès/erreurs.</li>
+                </ul>
+            </section>
+
+            <section class="pd-section">
+                <h2>Les <em>apprentissages</em>.</h2>
+                <p>Servlets Java avec annotations <code>@WebServlet</code>, pattern DAO/DTO, requêtes préparées contre l'injection SQL, sérialisation Jackson en JSON et XML, vues SQL pour calculs métier, écriture de 20+ tests d'API avec Bruno, et la valeur d'une API stateless bien typée pour un frontend ou mobile.</p>
+            </section>
+
+            <section class="pd-section">
+                <h2>Liens.</h2>
+                <div class="pd-cta">
+                    <span class="contact-btn" style="font-style: italic; opacity: 0.7;">Code disponible sur demande</span>
+                    <a href="../index.html#contact" class="contact-btn primary">Me contacter</a>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="footer-inner">
+            <span>© 2026 Aliocha Deflou</span>
+            <div class="footer-links">
+                <a href="../index.html">Accueil</a>
+                <a href="../index.html#contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+    <script src="../scripts/main.js"></script>
+</body>
+</html>

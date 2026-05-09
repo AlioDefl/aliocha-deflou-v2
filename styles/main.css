@@ -1108,3 +1108,95 @@ a { color: inherit; text-decoration: none; }
     opacity: var(--stack-opacity, 1);
     transform: scale(var(--stack-scale, 1));
 }
+
+/* ========================================================== */
+/* === Project detail — text-only image fallback =========== */
+/* ========================================================== */
+
+.pd-image.pd-image-text {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background: linear-gradient(135deg, var(--bg-elevated) 0%, var(--bg-deep) 100%);
+    padding: clamp(2rem, 6vw, 5rem);
+    text-align: left;
+    aspect-ratio: 16 / 9;
+}
+.pd-image-text-inner {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.pd-image-num {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+.pd-image-title {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 700;
+    letter-spacing: -2px;
+    line-height: 0.95;
+    color: var(--text);
+    margin: 0;
+}
+.pd-image-stack {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 0.75rem;
+}
+
+/* ========================================================== */
+/* === Project mini — full card clickable with CTA ========= */
+/* ========================================================== */
+
+.project-mini {
+    cursor: pointer;
+}
+.project-mini-link-area {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1;
+    color: inherit;
+    text-decoration: none;
+}
+.project-mini-link-area:hover { text-decoration: none; }
+.project-mini-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+}
+.project-mini-cta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    transition: gap 0.3s var(--ease-out);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.project-mini-cta::after { content: '→'; transition: transform 0.3s var(--ease-out); }
+.project-mini:hover .project-mini-cta::after { transform: translateX(4px); }
+.project-mini-ghlink {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    transition: color 0.3s var(--ease-out);
+}
+.project-mini-ghlink:hover { color: var(--accent); }
+.project-mini-ghlink.muted { color: var(--text-faint); cursor: default; font-style: italic; }

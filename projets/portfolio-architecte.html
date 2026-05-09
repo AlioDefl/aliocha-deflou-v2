@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Architecte — Étude de cas | Aliocha Deflou</title>
+    <meta name="description" content="Site portfolio React/TypeScript pour un architecte. Galerie interactive, animations fluides, optimisation des images haute résolution.">
+    <meta name="theme-color" content="#1a1a1a">
+    <link rel="canonical" href="https://aliodefl.github.io/aliocha-deflou-v2/projets/portfolio-architecte.html">
+    <link rel="icon" type="image/png" href="../assets/icons/favicon.png">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Portfolio Architecte — Étude de cas | Aliocha Deflou">
+    <meta property="og:description" content="Site portfolio React/TypeScript pour un architecte.">
+    <meta property="og:image" content="https://aliodefl.github.io/aliocha-deflou-v2/assets/icons/og-image.png">
+    <meta property="og:locale" content="fr_FR">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+    <a href="#main" class="skip-link">Aller au contenu principal</a>
+    <nav class="pd-nav" role="navigation">
+        <a href="../index.html#projets" class="pd-nav-back">← Tous les projets</a>
+        <a href="../index.html" class="nav-logo">Aliocha Deflou</a>
+    </nav>
+
+    <main id="main">
+        <article>
+            <header class="pd-hero">
+                <div class="pd-meta"><span class="accent">2025</span><span>·</span><span>Site web React</span></div>
+                <h1 class="pd-title">Portfolio<br>Architecte.</h1>
+                <p class="pd-tagline">Site web portfolio moderne et responsive pour un architecte, mettant en valeur ses créations architecturales avec une galerie de projets interactive et des animations fluides.</p>
+                <div class="pd-image pd-image-text">
+                    <div class="pd-image-text-inner">
+                        <span class="pd-image-num">06</span>
+                        <h2 class="pd-image-title">Architecte<br>portfolio.</h2>
+                        <span class="pd-image-stack">React · TypeScript · Tailwind · Vite</span>
+                    </div>
+                </div>
+            </header>
+
+            <section class="pd-section">
+                <h2>Le <em>contexte</em>.</h2>
+                <p>Site portfolio commandé par un architecte pour exposer ses réalisations en ligne. Public cible : prospects, clients, partenaires institutionnels. Le site doit valoriser un travail visuel (plans, vues 3D, photos de chantier) sans sacrifier les performances ni l'expérience mobile.</p>
+            </section>
+
+            <section class="pd-section">
+                <h2>La <em>stack</em>.</h2>
+                <div class="pd-stack-grid">
+                    <div class="pd-stack-item"><span class="lab">Frontend</span>React 18 + TypeScript</div>
+                    <div class="pd-stack-item"><span class="lab">Styling</span>Tailwind CSS</div>
+                    <div class="pd-stack-item"><span class="lab">Build</span>Vite</div>
+                    <div class="pd-stack-item"><span class="lab">Hébergement</span>Statique</div>
+                </div>
+            </section>
+
+            <section class="pd-section">
+                <h2>Les <em>défis</em>.</h2>
+                <ul>
+                    <li>Optimiser les performances avec des images haute résolution (vues 3D, photos chantier). Solution : conversion WebP, lazy loading, responsive images avec <code>srcset</code>.</li>
+                    <li>Concevoir un layout qui valorise la photographie architecturale (rapport d'aspect variable, mises en scène). Solution : grille fluide avec breakpoints sur-mesure et galerie modale plein écran.</li>
+                    <li>Animations fluides sans nuire à la lisibilité du contenu. Solution : transitions discrètes au scroll et au hover, pas d'effets gratuits.</li>
+                </ul>
+            </section>
+
+            <section class="pd-section">
+                <h2>Les <em>apprentissages</em>.</h2>
+                <p>Développement frontend moderne avec React + TypeScript + Tailwind, optimisation d'images web, conception de galeries responsives, prise en compte des contraintes spécifiques d'un métier visuel (architecture).</p>
+            </section>
+
+            <section class="pd-section">
+                <h2>Liens.</h2>
+                <div class="pd-cta">
+                    <span class="contact-btn" style="font-style: italic; opacity: 0.7;">Code privé (livraison client)</span>
+                    <a href="../index.html#contact" class="contact-btn primary">Me contacter</a>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="footer-inner">
+            <span>© 2026 Aliocha Deflou</span>
+            <div class="footer-links">
+                <a href="../index.html">Accueil</a>
+                <a href="../index.html#contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+    <script src="../scripts/main.js"></script>
+</body>
+</html>

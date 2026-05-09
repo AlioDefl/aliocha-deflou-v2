@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labyrinthe SAÉ 3.3 — Étude de cas | Aliocha Deflou</title>
+    <meta name="description" content="Application JavaFX de génération et résolution de labyrinthes en équipe de 5. Mode libre, mode progression, boutique, thèmes. SAÉ BUT2 IUT Lille.">
+    <meta name="theme-color" content="#1a1a1a">
+    <link rel="canonical" href="https://aliodefl.github.io/aliocha-deflou-v2/projets/labyrinthe-sae-3-3.html">
+    <link rel="icon" type="image/png" href="../assets/icons/favicon.png">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Labyrinthe SAÉ 3.3 — Étude de cas | Aliocha Deflou">
+    <meta property="og:description" content="Application JavaFX de génération et résolution de labyrinthes — projet d'équipe SAÉ 3.3, BUT2 IUT Lille.">
+    <meta property="og:image" content="https://aliodefl.github.io/aliocha-deflou-v2/assets/icons/og-image.png">
+    <meta property="og:locale" content="fr_FR">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+    <a href="#main" class="skip-link">Aller au contenu principal</a>
+    <nav class="pd-nav" role="navigation">
+        <a href="../index.html#projets" class="pd-nav-back">← Tous les projets</a>
+        <a href="../index.html" class="nav-logo">Aliocha Deflou</a>
+    </nav>
+
+    <main id="main">
+        <article>
+            <header class="pd-hero">
+                <div class="pd-meta"><span class="accent">2025</span><span>·</span><span>Projet d'équipe Java</span></div>
+                <h1 class="pd-title">Labyrinthe<br>SAÉ 3.3.</h1>
+                <p class="pd-tagline">Application JavaFX de génération et résolution de labyrinthes développée en équipe de 5 sur GitLab Université de Lille. Mode libre, mode progression avec étapes et défis, boutique d'articles, sauvegarde et thèmes visuels (dont thème Bob l'Éponge).</p>
+                <div class="pd-image pd-image-text">
+                    <div class="pd-image-text-inner">
+                        <span class="pd-image-num">04 · SAÉ 3.3</span>
+                        <h2 class="pd-image-title">Labyrinthe<br>JavaFX.</h2>
+                        <span class="pd-image-stack">Java · JavaFX · Maven · MVC · JUnit</span>
+                    </div>
+                </div>
+            </header>
+
+            <section class="pd-section">
+                <h2>Le <em>contexte</em>.</h2>
+                <p>SAÉ 3.3, BUT2 Informatique IUT de Lille. Équipe de 5 : <strong>Alex MARESCAUX</strong>, <strong>Aliocha DEFLOU</strong>, <strong>Émile CAMARD</strong>, <strong>Matthieu CALESSE</strong>, <strong>Enzo DEWAME</strong>. Objectif : concevoir une application JavaFX de génération et résolution de labyrinthes, avec deux modes de jeu, persistance de partie et thématisation visuelle.</p>
+                <p>Mon rôle principal : prototype Figma, intégration de la maquette en JavaFX, et amélioration continue du visuel (dont le thème Bob l'Éponge).</p>
+            </section>
+
+            <section class="pd-section">
+                <h2>La <em>stack</em>.</h2>
+                <div class="pd-stack-grid">
+                    <div class="pd-stack-item"><span class="lab">Langage</span>Java</div>
+                    <div class="pd-stack-item"><span class="lab">UI</span>JavaFX</div>
+                    <div class="pd-stack-item"><span class="lab">Build</span>Maven (pom.xml)</div>
+                    <div class="pd-stack-item"><span class="lab">Architecture</span>MVC strict</div>
+                    <div class="pd-stack-item"><span class="lab">Tests</span>JUnit</div>
+                    <div class="pd-stack-item"><span class="lab">VCS</span>Git / GitLab</div>
+                    <div class="pd-stack-item"><span class="lab">Design</span>Figma</div>
+                </div>
+            </section>
+
+            <section class="pd-section">
+                <h2>L'<em>architecture</em>.</h2>
+                <p>Architecture MVC strictement séparée. <strong>Modèle</strong> : classes <code>Labyrinthe</code>, <code>Cellule</code>, <code>Joueur</code>, <code>Partie</code>, <code>ModeJeu</code> (abstraite, déclinée en <code>ModeLibre</code> et <code>ModeProgression</code>), <code>Étape</code> et <code>Défi</code> pour la progression. <strong>Vue</strong> : composants JavaFX rendant la grille et l'UI. <strong>Contrôleur</strong> : orchestre les interactions clavier/souris et met à jour modèle puis vue.</p>
+                <p>Génération de labyrinthe parfait (sans boucle) via algorithme récursif. Sauvegarde sérialisée pour reprendre une partie en cours. Boutique d'articles débloquables au fil de la progression.</p>
+            </section>
+
+            <section class="pd-section">
+                <h2>Les <em>défis</em>.</h2>
+                <ul>
+                    <li>Stabiliser la génération du labyrinthe parfait (sans boucle, toujours résolvable). Solution : algorithme de parcours en profondeur avec backtracking, plusieurs correctifs successifs.</li>
+                    <li>Coordonner le travail Git en équipe de 5 avec branches feature, rebase et merge final propre. Solution : conventions de branches claires + revues croisées.</li>
+                    <li>Intégrer correctement la maquette Figma dans JavaFX sans casser le MVC. Solution : composants graphiques dédiés, pas de logique métier dans la vue.</li>
+                </ul>
+            </section>
+
+            <section class="pd-section">
+                <h2>Les <em>apprentissages</em>.</h2>
+                <p>Architecture MVC en Java, JavaFX pour interface graphique riche, organisation Maven (pom.xml à la racine), gestion d'équipe via GitLab avec rebase et résolution de conflits, écriture d'une Javadoc complète, conception d'un prototype Figma puis intégration en code.</p>
+            </section>
+
+            <section class="pd-section">
+                <h2>Liens.</h2>
+                <div class="pd-cta">
+                    <a href="https://github.com/AlioDefl/labyrinthe-sae-3-3" target="_blank" rel="noopener" class="contact-btn primary">Code GitHub →</a>
+                    <a href="../index.html#contact" class="contact-btn">Me contacter</a>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="footer-inner">
+            <span>© 2026 Aliocha Deflou</span>
+            <div class="footer-links">
+                <a href="../index.html">Accueil</a>
+                <a href="../index.html#contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+    <script src="../scripts/main.js"></script>
+</body>
+</html>
