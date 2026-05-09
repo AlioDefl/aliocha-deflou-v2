@@ -141,24 +141,6 @@
         handler();
     }
 
-    // 5a. Featured images — 3D pivot on scroll
-    const featuredImages = document.querySelectorAll('.featured-image');
-    if (featuredImages.length && !reducedMotion) {
-        rafScrollEffect(() => {
-            featuredImages.forEach((el) => {
-                const rect = el.getBoundingClientRect();
-                const wh = window.innerHeight || document.documentElement.clientHeight;
-                if (rect.bottom < 0 || rect.top > wh) return;
-                const center = rect.top + rect.height / 2;
-                const fromCenter = (center - wh / 2) / wh;
-                const rotateY = fromCenter * 14;
-                const rotateX = -fromCenter * 6;
-                const translateY = fromCenter * 18;
-                el.style.transform = `perspective(1400px) rotateY(${rotateY.toFixed(2)}deg) rotateX(${rotateX.toFixed(2)}deg) translateY(${translateY.toFixed(1)}px)`;
-            });
-        });
-    }
-
     // 5b. Featured cards — stack/retract effect (sticky + scale based on next card position)
     const featuredCards = document.querySelectorAll('.featured-list .featured-card');
     if (featuredCards.length > 1 && !reducedMotion) {
@@ -401,19 +383,6 @@
             const y = window.scrollY * 0.15;
             statusPill.style.transform = `translateY(${-y}px)`;
         });
-    }
-
-    // ---------- 13. Featured card images — clip-path scroll reveal ----------
-    if ('IntersectionObserver' in window && !reducedMotion) {
-        const clipObs = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('clip-in');
-                    clipObs.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.2 });
-        document.querySelectorAll('.featured-image, .pd-image').forEach((el) => clipObs.observe(el));
     }
 
     // ---------- 14. Tilt on featured-card content (without breaking stack effect) ----------
