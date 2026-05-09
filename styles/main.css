@@ -1101,3 +1101,23 @@ a { color: inherit; text-decoration: none; }
         clip-path: none;
     }
 }
+
+/* ========================================================== */
+/* === FIX: restore stack effect + featured images visible === */
+/* ========================================================== */
+
+/* Cancel clip-path entrance — was hiding images */
+.featured-image, .pd-image {
+    clip-path: none;
+    transition: transform 0.05s linear, box-shadow 0.4s var(--ease-out);
+}
+
+/* Featured cards: opacity-only entrance, let stack effect own the transform */
+.featured-card[data-reveal] {
+    opacity: 0;
+    transform: scale(var(--stack-scale, 1));
+}
+.featured-card[data-reveal].is-visible {
+    opacity: var(--stack-opacity, 1);
+    transform: scale(var(--stack-scale, 1));
+}
